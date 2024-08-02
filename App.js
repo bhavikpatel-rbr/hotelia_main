@@ -9,7 +9,7 @@ class App extends Component {
       <SafeAreaView style={styles.AndroidSafeArea}>
        <StatusBar
         animated={true}
-        backgroundColor="#61dafb"
+        barStyle="dark-content" 
       />
         <AppContainer />
       </SafeAreaView>

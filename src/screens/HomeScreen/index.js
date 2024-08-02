@@ -26,6 +26,7 @@ import { AuthContext } from "_navigations/AuthContext";
 import Icon from "_components/Icon";
 import RNTextInput from "_components/RNTextInput";
 import RNButton from "_components/RNButton";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 export default class HomeScreen extends Component {
   static contextType = AuthContext;
@@ -35,10 +36,11 @@ export default class HomeScreen extends Component {
     const navigation = this.props.navigation;
 
     return (
+      <SafeAreaView style={{flex:1, backgroundColor: Colors.white,}}>
+        <ScrollView style={{flex:1}}>
       <View
         style={{
-          width: "100.00%",
-          height: "100%",
+         flex:1,
           backgroundColor: Colors.white,
           borderRadius: fixedWidth * 0,
           borderWidth: 0,
@@ -168,7 +170,7 @@ export default class HomeScreen extends Component {
                   shadowOffset: { width: 0, height: 0 },
                   shadowOpacity: 0.2,
                   backgroundColor: Colors.silver,
-                  borderRadius: fixedWidth * 100,
+                  borderRadius: 18,
                   borderWidth: 0,
                   borderColor: Colors.white,
                   flexDirection: "column",
@@ -193,8 +195,8 @@ export default class HomeScreen extends Component {
                     width: fixedWidth * 15.0,
                     height: fixedWidth * 15.0,
                     position: "absolute",
-                    top: "0.01%",
-                    right: "0.75%",
+                    top: 7,
+                    right: 4,
                     backgroundColor: Colors.blue,
                     borderRadius: fixedWidth * 100,
                     borderWidth: 0,
@@ -219,128 +221,44 @@ export default class HomeScreen extends Component {
               </TouchableOpacity>
             </View>
           </View>
-          <View
-            style={{
-              width: "100.00%",
-              marginTop: fixedWidth * 14.0,
-              marginBottom: fixedWidth * 2.0,
-              paddingLeft: fixedWidth * 12.0,
-              paddingRight: fixedWidth * 12.0,
-              borderRadius: fixedWidth * 10,
-              borderWidth: 1,
-              borderColor: Colors.silver,
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <View
-              style={{
-                borderRadius: fixedWidth * 0,
-                borderWidth: 0,
-                borderColor: Colors.white,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  borderRadius: fixedWidth * 0,
-                  borderWidth: 0,
-                  borderColor: Colors.white,
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon
-                  type={"feather"}
-                  name={"search"}
-                  color={Colors.blue}
-                  style={{
-                    width: fixedWidth * 25.0,
-                    height: fixedWidth * 25.0,
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                ></Icon>
-              </TouchableOpacity>
-              <View
-                style={{
-                  paddingLeft: fixedWidth * 8.0,
-                  paddingRight: fixedWidth * 4.0,
-                  borderRadius: fixedWidth * 0,
-                  borderWidth: 0,
-                  borderColor: Colors.white,
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <RNTextInput
-                  name={"valueKey"}
-                  value={this.state.valueKey}
-                  onChange={(valueKey) => {
-                    this.setState({ valueKey });
-                  }}
-                  required={false}
-                  placeholder={"Explore Something Fun"}
-                  placeholderTextColor={Colors.textgrey}
-                  editable={true}
-                  multiline={false}
-                  errors={this.state.errors || {}}
-                  disabledColor={Colors.primary}
-                  style={{
-                    width: "100.00%",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                ></RNTextInput>
-              </View>
-            </View>
-            <View
-              style={{
-                borderRadius: fixedWidth * 0,
-                borderWidth: 0,
-                borderColor: Colors.white,
-                flexDirection: "column",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => {}}
-                style={{
-                  width: fixedWidth * 35.0,
-                  height: fixedWidth * 35.0,
-                  backgroundColor: Colors.silver,
-                  borderRadius: fixedWidth * 8,
-                  borderWidth: 1,
-                  borderColor: Colors.grey,
-                  flexDirection: "column",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Icon
-                  type={"ionicon"}
-                  name={"options"}
-                  color={Colors.blue}
-                  style={{
-                    width: fixedWidth * 20.0,
-                    height: fixedWidth * 20.0,
-                    flexDirection: "column",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                ></Icon>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <View style={styles.container}>
+      <View style={styles.innerContainer}>
+        <TouchableOpacity
+          onPress={() => {}}
+          style={styles.iconWrapper}
+        >
+          <Icon
+            type={"feather"}
+            name={"search"}
+            color={Colors.blue}
+            style={styles.icon}
+          />
+        </TouchableOpacity>
+        <View style={styles.inputWrapper}>
+          <RNTextInput
+            name={"valueKey"}
+            placeholder={"Explore Something Fun"}
+            placeholderTextColor={Colors.textgrey}
+            editable={true}
+            multiline={false}
+            style={styles.textInput}
+          />
+        </View>
+      </View>
+      <View style={styles.buttonWrapper}>
+        <TouchableOpacity
+          onPress={() => {}}
+          style={styles.button}
+        >
+          <Icon
+            type={"ionicon"}
+            name={"options"}
+            color={Colors.blue}
+            style={styles.buttonIcon}
+          />
+        </TouchableOpacity>
+      </View>
+    </View>
         </View>
         <ScrollView
           horizontal={false}
@@ -1757,6 +1675,8 @@ export default class HomeScreen extends Component {
           </View>
         </ScrollView>
       </View>
+      </ScrollView>
+      </SafeAreaView>
     );
   }
 }

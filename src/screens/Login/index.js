@@ -36,10 +36,8 @@ export default class Login extends Component {
     const navigation = this.props.navigation;
 
     return (
-      <SafeAreaView style={{flex:1}}>
+      <SafeAreaView style={{flex:1, backgroundColor: Colors.white,}}>
         <ScrollView style={{flex:1}}>
-
-       
       <View
         style={{
           width: "100.00%",
